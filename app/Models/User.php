@@ -42,4 +42,36 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // relacion uno a uno
+    public function profile() {
+        //$profile = Profile::where('user_id', $this->id)->first();
+        // App\Models\Profile == Profile::class
+        return $this->hasOne(Profile::class);
+    }
+
+    // relacion uno a muchos
+    public function posts() {
+        return $this->hasMany('App\Models\Post');
+    }
+
+    // relacion uno a muchos
+    public function archives() {
+        return $this->hasMany('App\Models\Archive');
+    }
+
+    // relacion muchos a muchos
+    public function roles() {
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+    // relacion uno a uno polimorfica
+    public function image() {
+        return $this->morphOne('App\Models\Image', 'imageable');
+    }
+
+    // relacion uno a muchos polimorfica
+    public function comments() {
+        return $this->hasMany('App\Models\Comment');
+    }    
 }
