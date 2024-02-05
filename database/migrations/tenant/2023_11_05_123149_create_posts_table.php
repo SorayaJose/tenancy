@@ -13,18 +13,23 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 250);
-            $table->text('body');
+            
+            $table->string('name');
+            $table->string('slug');
+            $table->text('body'); //extract
+            $table->enum('status', [1, 2])->default(2);
+            
+            //$table->unsignedBigInteger('categoria_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('categoria_id')->nullable();
 
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade')->onUpdate('cascade');
 
-            $table->foreign('categoria_id')
-                ->references('id')->on('categorias')
-                ->onDelete('set null');
+            //$table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('set null');
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
 
             $table->timestamps();
         });

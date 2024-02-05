@@ -10,6 +10,11 @@
            'url' => route('tasks.index'),
            'active' => request()->routeIs('tasks.*')
         ],          
+        [
+           'name' => 'Posts',
+           'url' => route('posts.index'),
+           'active' => request()->routeIs('posts.*')
+        ],          
     ]   
 @endphp
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">

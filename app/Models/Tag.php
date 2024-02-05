@@ -11,11 +11,11 @@ class Tag extends Model
 
     // relacion muchos a muchos polimorfica
     public function posts() {
-        return $this->morphedByMany('App\Models\Post', 'taggable')
+        return $this->belongsToMany('App\Models\Post');
     }
 
     // relacion muchos a muchos polimorfica
     public function archives() {
-        return $this->morphedByMany('App\Models\Archive', 'taggable')
+        return $this->morphedByMany('App\Models\Archive', 'taggable');
     }    
 }

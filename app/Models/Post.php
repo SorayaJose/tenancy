@@ -16,9 +16,9 @@ class Post extends Model
     }
 
     // relacion uno a muchos (inversa)
-    public function categoria() {
+    public function category() {
         //$user = User::find($this->user_id);
-        return $this->belongsTo('App\Models\Categoria');
+        return $this->belongsTo('App\Models\Category');
     }
     
     // relacion uno a uno polimorfica
@@ -33,7 +33,8 @@ class Post extends Model
 
     // relacion muchos a muchos polimorfica
     public function tags() {
-        return $this->morphToMany('App\Models\Tag', 'taggable');
+        //return $this->belongsToMany('App\Models\Tag', 'taggable');
+        return $this->belongsToMany('App\Models\Tag');
     }
 
 }

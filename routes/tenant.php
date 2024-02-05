@@ -7,6 +7,7 @@ use Psy\TabCompletion\Matcher\FunctionsMatcher;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 use App\Http\Controllers\Tenancy\TaskController;
+use App\Http\Controllers\Tenancy\PostController;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 /*
@@ -44,6 +45,7 @@ use Illuminate\Support\Facades\Storage;
         })->name('dashboard');
 
         Route::resource('tasks', TaskController::class);
+        Route::resource('posts', PostController::class);
 
     });
 
