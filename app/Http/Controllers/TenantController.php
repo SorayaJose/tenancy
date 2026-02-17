@@ -12,8 +12,8 @@ class TenantController extends Controller
      */
     public function index()
     {
-        return view('tenants.index', [ 
-            'tenants' => Tenant::all() ,
+        return view('tenants.index', [
+            'tenants' => Tenant::all(),
         ]);
     }
 
@@ -35,10 +35,10 @@ class TenantController extends Controller
                 'id' => 'required|unique:tenants',
             ]
         );
-        
+
         $tenant = Tenant::create($request->all());
         $tenant->domains()->create([
-            'domain' => $request->get('id') . '.' . 'tenancy.test',
+            'domain' => $request->get('id').'.'.'tenancy.test',
         ]);
 
         return redirect()->route('tenants.index')
@@ -50,8 +50,8 @@ class TenantController extends Controller
      */
     public function show(Tenant $tenant)
     {
-        return view('tenants.show', [ 
-            'tenant' => $tenant ,
+        return view('tenants.show', [
+            'tenant' => $tenant,
         ]);
     }
 
@@ -60,8 +60,8 @@ class TenantController extends Controller
      */
     public function edit(Tenant $tenant)
     {
-        return view('tenants.edit', [ 
-            'tenant' => $tenant ,
+        return view('tenants.edit', [
+            'tenant' => $tenant,
         ]);
     }
 
@@ -79,7 +79,7 @@ class TenantController extends Controller
         ]);
 
         $tenant->domains()->update([
-            'domain' => $request->get('id') . '.' . 'tenancy.test',
+            'domain' => $request->get('id').'.'.'tenancy.test',
         ]);
 
         return redirect()->route('tenants.index')
