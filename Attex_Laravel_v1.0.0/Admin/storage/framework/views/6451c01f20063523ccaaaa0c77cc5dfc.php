@@ -1,0 +1,2 @@
+<?php echo app('Illuminate\Foundation\Vite')(['resources/scss/app.scss', 'resources/scss/icons.scss']); ?>
+<?php /**PATH /home/denish/Desktop/Temp/9/Attex_Laravel_v1.0.0/Admin/resources/views/layouts/shared/head-css.blade.php ENDPATH**/ ?>
