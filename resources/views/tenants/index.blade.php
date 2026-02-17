@@ -6,6 +6,12 @@
     </x-slot>
 
     <x-container class="py-6">
+        @if(session('success'))
+            <div class="mb-4 px-4 py-3 bg-green-100 border border-green-400 text-green-700 rounded">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="flex justify-end mb-6">
             <a href="{{ route('tenants.create') }}" class="btn btn-blue">
                 Nuevo
@@ -24,6 +30,9 @@
                     Dominio
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Estado
+                </th>
+                <th scope="col" class="px-6 py-3">
                    
                 </th>
             </tr>
@@ -38,12 +47,31 @@
                         {{ $tenant->domains->first()->domain ?? '' }}
                     </td>
                     <td class="px-6 py-4">
-                        <div class="flex justify-end">
+                        @if($tenant->delegated_to_cloud)
+                            <span class="px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
+                                Delegado a la nube
+                            </span>
+                        @else
+                            <span class="px-2 py-1 text-xs font-semibold text-gray-700 bg-gray-200 rounded">
+                                Local
+                            </span>
+                        @endif
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex justify-end gap-2">
+                            @if(!$tenant->delegated_to_cloud)
+                                <form action="{{route('tenants.delegate', $tenant)}}" method="POST" onsubmit="return confirm('¿Está seguro de que desea delegar este inquilino al agente en la nube?');">
+                                    @csrf
+                                    <button class="btn btn-blue">
+                                        Delegar al agente en la nube
+                                    </button>
+                                </form>
+                            @endif
 
-                            <form action="{{route('tenants.destroy', $tenant)}}" method="POST">
+                            <form action="{{route('tenants.destroy', $tenant)}}" method="POST" onsubmit="return confirm('¿Está seguro de que desea eliminar este inquilino?');">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-red mx-3">
+                                <button class="btn btn-red">
                                     Eliminar
                                 </button>
                             </form>

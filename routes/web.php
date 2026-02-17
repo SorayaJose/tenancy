@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('tenants', TenantController::class)->except(['show']);
+    Route::post('/tenants/{tenant}/delegate', [TenantController::class, 'delegate'])->name('tenants.delegate');
 });
 
 require __DIR__.'/auth.php';

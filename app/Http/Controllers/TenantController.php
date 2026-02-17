@@ -95,4 +95,17 @@ class TenantController extends Controller
 
         return redirect()->route('tenants.index');
     }
+
+    /**
+     * Delegate the tenant to the cloud agent.
+     */
+    public function delegate(Tenant $tenant)
+    {
+        $tenant->update([
+            'delegated_to_cloud' => true,
+        ]);
+
+        return redirect()->route('tenants.index')
+            ->with('success', 'Inquilino delegado al agente en la nube exitosamente');
+    }
 }
