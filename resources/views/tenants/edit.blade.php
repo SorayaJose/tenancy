@@ -8,7 +8,7 @@
     <x-container class="py-6">
         <div class="card">
             <div class="card-body">
-                <form action="{{route('tenants.update', $tenant)}}" method="POST">
+                <form action="{{route('tenants.update', $tenant)}}" method="POST" onsubmit="return confirm('¿Está seguro de que desea modificar este inquilino?');">
                     @csrf
                     @method('PUT')
 
@@ -23,9 +23,12 @@
 
                     </div>
 
-                    <div class="flex justify-end">
-                        <button class="btn btn-blue">
-                            Modificar
+                    <div class="flex justify-end gap-2">
+                        <a href="{{ route('tenants.index') }}" class="btn btn-gray">
+                            Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-blue">
+                            Confirmar cambios
                         </button>
                     </div>
                 </form>
