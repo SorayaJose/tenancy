@@ -14,6 +14,10 @@
   @apply bg-red-500 text-white hover:bg-red-700;
 }
 
+.btn-gray {
+  @apply bg-gray-500 text-white hover:bg-gray-700;
+}
+
 .card {
   @apply w-full;
 }
